@@ -13,6 +13,7 @@ import { CronModule } from './cron/cron.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { SharedModule } from './modules/shared/shared.module';
 import { SettingService } from './modules/shared/services/setting.service';
+import { SearchModule } from './search/search.module';
 
 @Module({
   imports: [
@@ -24,22 +25,24 @@ import { SettingService } from './modules/shared/services/setting.service';
       driver: ApolloDriver,
       imports: [SharedModule],
       inject: [SettingService],
-      useFactory: (settingService: SettingService) =>
-        settingService.graphqlUseFactory,
+      useFactory: (SettingService: SettingService) =>
+        SettingService.graphqlUseFactory,
     }),
     TypeOrmModule.forRootAsync({
       imports: [SharedModule],
       inject: [SettingService],
       useFactory: (settingService: SettingService) =>
-        settingService.typeOrmUseFactory,
+        settingService.TypeOrmUseFactory,
     }),
     ScheduleModule.forRoot(),
+
     UserModule,
     AuthModule,
     PlaceModule,
     UploadModule,
     DeclareModule,
     CronModule,
+    SearchModule,
   ],
 })
 export class AppModule {}

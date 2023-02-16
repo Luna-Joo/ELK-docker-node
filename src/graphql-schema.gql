@@ -73,7 +73,9 @@ type Mutation {
   createUser(input: CreateUserInput!): User!
   deleteFiles(keys: [String!]!): Boolean!
   deletePlace(id: Float!): JSON!
+  deleteTest: JSON!
   deleteUser(id: String!): JSON!
+  indexTest: JSON!
   signIn(input: SignInInput!): JwtWithUser!
 
   """
@@ -99,6 +101,7 @@ type Query {
   getMe: User!
   getOnePlace(input: GetOneInput): Place!
   getOneUser(input: GetOneInput): User!
+  searchTest: JSON!
 }
 
 input SignInInput {
